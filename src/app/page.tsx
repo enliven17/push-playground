@@ -8,6 +8,9 @@ import WalletInput from '@/components/WalletInput'
 import NewFileModal from '@/components/NewFileModal'
 import { ToastProvider, useToast } from '@/contexts/ToastContext'
 
+// Force dynamic rendering to avoid static generation issues
+export const dynamic = 'force-dynamic'
+
 const defaultContract = `// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 

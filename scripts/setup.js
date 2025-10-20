@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-console.log('🚀 Creditcoin Playground Setup');
+console.log('🚀 Push Chain Playground Setup');
 console.log('================================');
 
 // Check if .env.local exists
@@ -43,6 +43,6 @@ console.log('2. Make sure you have testnet CTC tokens');
 console.log('3. Run: npm run dev');
 console.log('');
 console.log('📚 Useful links:');
-console.log('- Creditcoin Docs: https://docs.creditcoin.org/');
-console.log('- Testnet Explorer: https://explorer.cc3-testnet.creditcoin.network/');
-console.log('- Discord: https://discord.gg/creditcoin');
+console.log('- Push Chain Docs: https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs');
+console.log('- Donut Testnet Explorer: https://donut.push.network/');
+console.log('- Push Chain GitHub: https://github.com/pushchain');

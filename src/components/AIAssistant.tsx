@@ -26,7 +26,7 @@ export default function AIAssistant({ contractCode }: AIAssistantProps) {
     {
       id: '1',
       type: 'assistant',
-      content: 'Hi! I\'m your Creditcoin AI Assistant. I can help you with smart contract development, Creditcoin documentation, and answer questions about the platform. How can I help you today?',
+      content: 'Hi! I\'m your Push Chain AI Assistant. I can help you with smart contract development, Push Chain documentation, and answer questions about the platform. How can I help you today?',
       timestamp: new Date()
     }
   ])
@@ -101,7 +101,7 @@ export default function AIAssistant({ contractCode }: AIAssistantProps) {
 
   const quickActions = [
     { text: 'Explain this contract', icon: DocumentTextIcon },
-    { text: 'How to deploy on Creditcoin?', icon: SparklesIcon },
+    { text: 'How to deploy on Push Chain?', icon: SparklesIcon },
     { text: 'Gas optimization tips', icon: SparklesIcon },
     { text: 'Security best practices', icon: SparklesIcon },
   ]
@@ -126,7 +126,7 @@ export default function AIAssistant({ contractCode }: AIAssistantProps) {
                 <SparklesIcon className="h-6 w-6 text-white" />
                 <div>
                   <h3 className="text-white font-semibold">AI Assistant</h3>
-                  <p className="text-white/80 text-xs">Creditcoin Expert</p>
+                  <p className="text-white/80 text-xs">Push Chain Expert</p>
                 </div>
               </div>
               <button
@@ -200,7 +200,7 @@ export default function AIAssistant({ contractCode }: AIAssistantProps) {
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask me anything about Creditcoin..."
+                  placeholder="Ask me anything about Push Chain..."
                   className="flex-1 bg-[#2d2d30] text-white placeholder-white/50 border border-white/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500"
                   disabled={isLoading}
                 />

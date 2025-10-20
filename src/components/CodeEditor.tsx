@@ -51,7 +51,7 @@ export default function CodeEditor({
     })
 
     // Set editor theme
-    monaco.editor.defineTheme('creditcoin-theme', {
+    monaco.editor.defineTheme('push-theme', {
       base: 'vs-dark',
       inherit: true,
       rules: [
@@ -70,7 +70,7 @@ export default function CodeEditor({
       }
     })
 
-    monaco.editor.setTheme('creditcoin-theme')
+    monaco.editor.setTheme('push-theme')
   }
 
   return (

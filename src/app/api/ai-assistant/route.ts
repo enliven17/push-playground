@@ -3,56 +3,59 @@ import { NextRequest, NextResponse } from 'next/server'
 const GROQ_API_KEY = process.env.GROQ_API_KEY
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
-// Creditcoin dokümantasyon bilgileri
-const CREDITCOIN_DOCS = {
+// Push Chain dokümantasyon bilgileri
+const PUSH_CHAIN_DOCS = {
     overview: `
-Creditcoin is a blockchain platform designed to facilitate credit transactions and lending. 
-It uses a unique consensus mechanism and supports smart contracts for decentralized finance (DeFi) applications.
+Push Chain is a next-generation blockchain platform designed for decentralized communication and Web3 applications. 
+It features EVM compatibility and supports smart contracts for various decentralized applications.
 
 Key Features:
 - EVM-compatible blockchain
-- Testnet Chain ID: 102031
-- Native token: CTC
+- Donut Testnet Chain ID: 42101
+- Native token: PC (Push Chain)
 - Gas price: typically 20 gwei
-- Block time: ~6 seconds
+- Fast block times and low fees
+- Built for Web3 communication protocols
 `,
 
     smartContracts: `
-Smart Contract Development on Creditcoin:
+Smart Contract Development on Push Chain:
 
 1. Language: Solidity (same as Ethereum)
 2. Compiler: Use Solidity 0.8.19 or later
 3. Development tools: Remix, Hardhat, Truffle
-4. Testnet RPC: https://rpc.cc3-testnet.creditcoin.network
-5. Explorer: https://creditcoin-testnet.blockscout.com/
+4. Testnet RPC: https://evm.rpc-testnet-donut-node2.push.org/
+5. Alternative RPC: https://evm.rpc-testnet-donut-node1.push.org/
+6. Explorer: https://donut.push.network
 
 Best Practices:
 - Always use SPDX license identifier
 - Implement proper access controls
 - Use events for important state changes
 - Consider gas optimization
-- Test thoroughly on testnet before mainnet
+- Test thoroughly on Donut testnet
+- Leverage Push Chain's communication features
 `,
 
     deployment: `
-Deploying Smart Contracts on Creditcoin:
+Deploying Smart Contracts on Push Chain Donut Testnet:
 
-1. Configure your wallet with Creditcoin testnet
-2. Get testnet CTC tokens from faucet
+1. Configure your wallet with Push Chain Donut testnet
+2. Get testnet PC tokens from faucet
 3. Compile your contract
 4. Deploy using web3 tools or IDE
 5. Verify contract on block explorer
 
 Network Configuration:
-- Network Name: Creditcoin Testnet
-- RPC URL: https://rpc.cc3-testnet.creditcoin.network
-- Chain ID: 102031
-- Currency Symbol: CTC
-- Block Explorer: https://creditcoin-testnet.blockscout.com/
+- Network Name: Push Chain Donut Testnet
+- RPC URL: https://evm.rpc-testnet-donut-node2.push.org/
+- Chain ID: 42101
+- Currency Symbol: PC
+- Block Explorer: https://donut.push.network
 `,
 
     gasOptimization: `
-Gas Optimization Tips for Creditcoin:
+Gas Optimization Tips for Push Chain:
 
 1. Use appropriate data types (uint256 vs uint8)
 2. Pack struct variables efficiently
@@ -62,6 +65,7 @@ Gas Optimization Tips for Creditcoin:
 6. Consider using libraries for common functions
 7. Batch operations when possible
 8. Use mapping instead of arrays for lookups
+9. Leverage Push Chain's efficient architecture
 `,
 
     security: `
@@ -86,27 +90,56 @@ Security Best Practices:
    - Be careful with delegatecall
    - Validate external contract calls
    - Use pull over push for payments
+`,
+
+    pushFeatures: `
+Push Chain Specific Features:
+
+1. Communication Protocols:
+   - Built-in notification systems
+   - Decentralized messaging capabilities
+   - Cross-chain communication support
+
+2. Web3 Integration:
+   - Native support for dApps
+   - Enhanced user experience features
+   - Seamless wallet integration
+
+3. Developer Tools:
+   - Push Chain SDK
+   - Notification APIs
+   - Communication libraries
+
+4. Use Cases:
+   - Decentralized notifications
+   - Real-time messaging dApps
+   - Cross-chain applications
+   - Web3 communication protocols
 `
 }
 
 function getRelevantDocs(message: string): string {
     const lowerMessage = message.toLowerCase()
-    let relevantInfo = CREDITCOIN_DOCS.overview
+    let relevantInfo = PUSH_CHAIN_DOCS.overview
 
     if (lowerMessage.includes('deploy') || lowerMessage.includes('deployment')) {
-        relevantInfo += '\n\n' + CREDITCOIN_DOCS.deployment
+        relevantInfo += '\n\n' + PUSH_CHAIN_DOCS.deployment
     }
 
     if (lowerMessage.includes('gas') || lowerMessage.includes('optimization')) {
-        relevantInfo += '\n\n' + CREDITCOIN_DOCS.gasOptimization
+        relevantInfo += '\n\n' + PUSH_CHAIN_DOCS.gasOptimization
     }
 
     if (lowerMessage.includes('security') || lowerMessage.includes('safe')) {
-        relevantInfo += '\n\n' + CREDITCOIN_DOCS.security
+        relevantInfo += '\n\n' + PUSH_CHAIN_DOCS.security
     }
 
     if (lowerMessage.includes('contract') || lowerMessage.includes('solidity')) {
-        relevantInfo += '\n\n' + CREDITCOIN_DOCS.smartContracts
+        relevantInfo += '\n\n' + PUSH_CHAIN_DOCS.smartContracts
+    }
+
+    if (lowerMessage.includes('push') || lowerMessage.includes('notification') || lowerMessage.includes('communication')) {
+        relevantInfo += '\n\n' + PUSH_CHAIN_DOCS.pushFeatures
     }
 
     return relevantInfo
@@ -120,28 +153,61 @@ function generateResponse(message: string, contractCode?: string): string {
         return analyzeContract(contractCode)
     }
 
+    // Push Chain specific features
+    if (lowerMessage.includes('push') || lowerMessage.includes('notification') || lowerMessage.includes('communication')) {
+        return `🚀 Push Chain Communication Features:
+
+📢 Decentralized Notifications:
+- Send notifications directly from smart contracts
+- Cross-chain notification support
+- Real-time messaging capabilities
+
+💬 Communication Protocols:
+- Built-in messaging systems
+- Secure peer-to-peer communication
+- Web3 native communication
+
+🔧 Developer Tools:
+- Push Chain SDK for notifications
+- Communication APIs
+- Integration libraries
+
+📋 Example Use Cases:
+- DeFi protocol notifications
+- Gaming event alerts
+- Social media dApps
+- Cross-chain messaging
+
+Want to see an example notification contract?`
+    }
+
     // Deployment help
     if (lowerMessage.includes('deploy')) {
-        return `To deploy your contract on Creditcoin:
+        return `To deploy your contract on Push Chain Donut Testnet:
 
-1. Configure Network: Add Creditcoin testnet to your wallet
-   - RPC: https://rpc.cc3-testnet.creditcoin.network
-   - Chain ID: 102031
+1. Configure Network: Add Push Chain Donut testnet to your wallet
+   - RPC: https://evm.rpc-testnet-donut-node2.push.org/
+   - Chain ID: 42101
 
-2. Get Test Tokens: Visit the Creditcoin faucet to get testnet CTC
+2. Get Test Tokens: Get testnet PC tokens from Push Chain faucet
 
 3. Compile: Make sure your contract compiles without errors
 
 4. Deploy: Use the Deploy tab in this playground or your preferred tool
 
-5. Verify: Check your contract on the block explorer
+5. Verify: Check your contract on https://donut.push.network
+
+🚀 Push Chain Benefits:
+- Fast transactions and low fees
+- EVM compatibility
+- Built-in communication features
 
 Need help with any specific step?`
     }
 
     // Gas optimization
     if (lowerMessage.includes('gas') || lowerMessage.includes('optimization')) {
-        return `Here are key gas optimization tips for Creditcoin:
+        return `Here are key gas optimization tips for Push Chain:
 
 🔧 Storage Optimization:
 - Pack struct variables (use uint128 instead of uint256 when possible)
@@ -154,17 +220,22 @@ Need help with any specific step?`
 - Batch operations together
 - Use events instead of storing data
 
-💡 Best Practices:
-- Test gas usage on testnet first
+💡 Push Chain Advantages:
+- Efficient architecture for lower gas costs
+- Fast block times reduce wait times
+- Optimized for communication protocols
+
+🎯 Best Practices:
+- Test gas usage on Donut testnet first
 - Use Solidity optimizer
 - Consider using libraries for common functions
 
-Current gas price on Creditcoin testnet is around 20 gwei.`
+Current gas price on Push Chain Donut testnet is around 20 gwei.`
     }
 
     // Security advice
     if (lowerMessage.includes('security') || lowerMessage.includes('safe')) {
-        return `🛡️ Security Best Practices for Creditcoin:
+        return `🛡️ Security Best Practices for Push Chain:
 
 Access Control:
 - Use OpenZeppelin's Ownable or AccessControl
@@ -176,6 +247,11 @@ Reentrancy Protection:
 - Follow checks-effects-interactions pattern
 - Be careful with external calls
 
+Push Chain Specific:
+- Secure communication protocols
+- Validate notification data
+- Protect against spam attacks
+
 Common Vulnerabilities:
 - Never use tx.origin for authorization
 - Validate all external contract calls
@@ -183,7 +259,7 @@ Common Vulnerabilities:
 - Be careful with delegatecall
 
 Testing:
-- Test thoroughly on testnet
+- Test thoroughly on Donut testnet
 - Use static analysis tools
 - Consider formal verification for critical contracts
 
@@ -191,22 +267,29 @@ Would you like me to review your current contract for security issues?`
     }
 
     // General help
-    return `I'm here to help with Creditcoin development! I can assist with:
+    return `I'm here to help with Push Chain development! I can assist with:
 
 📚 Documentation & Guides
 - Smart contract development
 - Deployment procedures
 - Network configuration
+- Push Chain communication features
 
 🔧 Code Analysis
 - Contract review and explanation
 - Gas optimization suggestions
 - Security best practices
 
+🚀 Push Chain Features
+- Decentralized notifications
+- Communication protocols
+- Web3 integration
+
 💡 Quick Tips
-- Creditcoin uses EVM, so Ethereum tools work
-- Testnet Chain ID: 102031
-- Block explorer: creditcoin-testnet.blockscout.com
+- Push Chain uses EVM, so Ethereum tools work
+- Donut Testnet Chain ID: 42101
+- Block explorer: donut.push.network
+- Built for Web3 communication
 
 What specific topic would you like help with?`
 }
@@ -265,24 +348,27 @@ async function callGroqAPI(message: string, contractCode?: string, conversationH
   console.log('All env keys:', Object.keys(process.env).filter(key => key.includes('GROQ')))
 
     try {
-        const systemPrompt = `You are a Creditcoin AI Assistant, an expert in blockchain development and smart contracts specifically for the Creditcoin platform. 
+        const systemPrompt = `You are a Push Chain AI Assistant, an expert in blockchain development and smart contracts specifically for the Push Chain platform. 
 
-CREDITCOIN PLATFORM INFO:
-${Object.values(CREDITCOIN_DOCS).join('\n\n')}
+PUSH CHAIN PLATFORM INFO:
+${Object.values(PUSH_CHAIN_DOCS).join('\n\n')}
 
 Your role:
-- Help developers with Creditcoin smart contract development
-- Provide accurate information about Creditcoin network
+- Help developers with Push Chain smart contract development
+- Provide accurate information about Push Chain Donut Testnet
 - Analyze smart contracts for security and optimization
-- Give practical, actionable advice
+- Give practical, actionable advice about Push Chain features
 - Be concise but thorough
-- Always mention Creditcoin-specific details when relevant
+- Always mention Push Chain-specific details when relevant
+- Highlight Push Chain's communication and Web3 capabilities
 
 Current context:
-- User is working in Creditcoin Playground IDE
-- Testnet Chain ID: 102031
-- RPC: https://rpc.cc3-testnet.creditcoin.network
-- Explorer: https://creditcoin-testnet.blockscout.com/
+- User is working in Push Chain Playground IDE
+- Donut Testnet Chain ID: 42101
+- Primary RPC: https://evm.rpc-testnet-donut-node2.push.org/
+- Alternative RPC: https://evm.rpc-testnet-donut-node1.push.org/
+- Explorer: https://donut.push.network
+- Documentation: https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs
 
 ${contractCode ? `\nCurrent contract code:\n\`\`\`solidity\n${contractCode}\n\`\`\`` : ''}`
 

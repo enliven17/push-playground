@@ -5,7 +5,7 @@ interface LoadingSpinnerProps {
   color?: string
 }
 
-export default function LoadingSpinner({ size = 'md', color = 'text-creditcoin-500' }: LoadingSpinnerProps) {
+export default function LoadingSpinner({ size = 'md', color = 'text-purple-500' }: LoadingSpinnerProps) {
   const sizeClasses = {
     sm: 'w-4 h-4',
     md: 'w-6 h-6',

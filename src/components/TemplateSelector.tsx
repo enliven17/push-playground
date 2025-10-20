@@ -18,7 +18,7 @@ export default function TemplateSelector({ onSelectTemplate }: TemplateSelectorP
         onClick={() => setIsOpen(!isOpen)}
         className="btn-secondary flex items-center space-x-2 hover-lift group"
       >
-        <SparklesIcon className="h-4 w-4 group-hover:text-creditcoin-400 transition-colors" />
+        <SparklesIcon className="h-4 w-4 group-hover:text-purple-400 transition-colors" />
         <span className="font-medium">Templates</span>
         <ChevronDownIcon className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -68,7 +68,7 @@ export default function TemplateSelector({ onSelectTemplate }: TemplateSelectorP
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-white group-hover:text-creditcoin-300 transition-colors text-sm">
+                    <div className="font-medium text-white group-hover:text-purple-300 transition-colors text-sm">
                       {template.name}
                     </div>
                     <div className="text-xs text-white/60 group-hover:text-white/80 transition-colors mt-1">

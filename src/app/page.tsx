@@ -47,7 +47,7 @@ export default function Home() {
   const [fileContents, setFileContents] = useState<Record<string, string>>({
     'MyContract.sol': defaultContract
   })
-  const [cursorPosition, setCursorPosition] = useState({ line: 1, column: 1 })
+
   const [terminalLogs, setTerminalLogs] = useState<string[]>([
     '$ push-playground',
     'Welcome to Push Chain Smart Contract IDE',

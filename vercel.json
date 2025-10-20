@@ -1,0 +1,8 @@
+{
+  "env": {
+    "PUSH_TESTNET_RPC_URL": "https://evm.rpc-testnet-donut-node2.push.org/",
+    "PUSH_TESTNET_CHAIN_ID": "42101",
+    "PUSH_TESTNET_EXPLORER": "https://donut.push.network",
+    "NEXT_PUBLIC_APP_NAME": "Push Playground"
+  }
+}

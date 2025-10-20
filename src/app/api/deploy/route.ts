@@ -66,7 +66,8 @@ export async function POST(request: NextRequest) {
         console.log(`Successfully connected to: ${rpcUrl}`);
         break;
       } catch (error) {
-        console.log(`Failed to connect to ${rpcUrl}:`, error.message);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.log(`Failed to connect to ${rpcUrl}:`, errorMessage);
         lastError = error;
         provider = null;
         isLocalNetwork = false;
@@ -77,7 +78,7 @@ export async function POST(request: NextRequest) {
     if (!provider) {
       return NextResponse.json({
         success: false,
-        error: `Unable to connect to any network. Push Chain Donut Testnet may be down. Try starting local Hardhat network with 'npx hardhat node'. Last error: ${lastError?.message || 'Unknown error'}`
+        error: `Unable to connect to any network. Push Chain Donut Testnet may be down. Try starting local Hardhat network with 'npx hardhat node'. Last error: ${lastError instanceof Error ? lastError.message : 'Unknown error'}`
       });
     }
     const wallet = new ethers.Wallet(privateKey, provider)

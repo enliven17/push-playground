@@ -16,7 +16,7 @@ module.exports = {
       chainId: 1337
     },
     "push-testnet": {
-      url: "https://rpc.testnet.push0.org",
+      url: "https://testnet-rpc.push0.org",
       chainId: 1998,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 20000000000, // 20 gwei

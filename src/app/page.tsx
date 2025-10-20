@@ -101,7 +101,7 @@ export default function Home() {
             Docs ↗
           </a>
           <a 
-            href="https://explorer.testnet.push0.org/" 
+            href="https://testnet-explorer.push0.org/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-xs text-gray-400 hover:text-gray-200 transition-colors"

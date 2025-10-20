@@ -43,16 +43,16 @@ Replace the `PRIVATE_KEY` variable in `.env.local` with your own private key.
 
 ```
 Network Name: Push Testnet
-RPC URL: https://rpc.testnet.push0.org
+RPC URL: https://testnet-rpc.push0.org
 Chain ID: 1998
 Currency Symbol: PUSH
-Block Explorer: https://explorer.testnet.push0.org
+Block Explorer: https://testnet-explorer.push0.org
 ```
 
 ### Getting Test Tokens
 
 To get Push Chain testnet tokens:
-1. Visit the [Push Chain Faucet](https://faucet.testnet.push0.org)
+1. Visit the [Push Chain Faucet](https://testnet-faucet.push0.org)
 2. Enter your wallet address
 3. Request test tokens
 4. Or check the [official documentation](https://pushchain.github.io/push-chain-website/)
@@ -175,7 +175,7 @@ Derlenmiş contractı deploy eder.
   "transactionHash": "0x...",
   "networkInfo": {
     "chainId": 1998,
-    "explorerUrl": "https://explorer.testnet.push0.org/address/0x..."
+    "explorerUrl": "https://testnet-explorer.push0.org/address/0x..."
   }
 }
 ```
@@ -245,9 +245,9 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 - [Push Chain Official Website](https://pushchain.github.io/push-chain-website/)
 - [Push Chain Documentation](https://pushchain.github.io/push-chain-website/docs/)
-- [Push Chain Explorer](https://explorer.testnet.push0.org/)
+- [Push Chain Explorer](https://testnet-explorer.push0.org/)
 - [Push Chain GitHub](https://github.com/pushchain)
-- [Push Chain Faucet](https://faucet.testnet.push0.org)
+- [Push Chain Faucet](https://testnet-faucet.push0.org)
 
 ## Support
 

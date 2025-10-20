@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Connect to Push Chain testnet
-    const provider = new ethers.JsonRpcProvider('https://rpc.testnet.push0.org')
+    const provider = new ethers.JsonRpcProvider('https://testnet-rpc.push0.org')
     const wallet = new ethers.Wallet(privateKey, provider)
 
     // Check wallet balance
@@ -61,8 +61,8 @@ export async function POST(request: NextRequest) {
       networkInfo: {
         chainId: 1998,
         networkName: 'Push Testnet',
-        explorerUrl: `https://explorer.testnet.push0.org/address/${contractAddress}`,
-        txExplorerUrl: `https://explorer.testnet.push0.org/tx/${contract.deploymentTransaction()?.hash}`
+        explorerUrl: `https://testnet-explorer.push0.org/address/${contractAddress}`,
+        txExplorerUrl: `https://testnet-explorer.push0.org/tx/${contract.deploymentTransaction()?.hash}`
       }
     })
 

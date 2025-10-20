@@ -36,7 +36,7 @@ export default function Header() {
               Documentation
             </a>
             <a 
-              href="https://explorer.testnet.push0.org/" 
+              href="https://testnet-explorer.push0.org/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/90 hover:text-white transition-all duration-300 font-medium hover:scale-105"
@@ -77,7 +77,7 @@ export default function Header() {
                 Documentation
               </a>
               <a 
-                href="https://explorer.testnet.push0.org/" 
+                href="https://testnet-explorer.push0.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white/90 hover:text-white transition-all duration-300 font-medium py-2"

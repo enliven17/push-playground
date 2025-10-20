@@ -3,8 +3,8 @@ import { NetworkConfig } from '@/types/contract'
 export const PUSH_TESTNET: NetworkConfig = {
   name: 'Push Testnet',
   chainId: 1998,
-  rpcUrl: 'https://rpc.testnet.push0.org',
-  explorerUrl: 'https://explorer.testnet.push0.org',
+  rpcUrl: 'https://testnet-rpc.push0.org',
+  explorerUrl: 'https://testnet-explorer.push0.org',
   symbol: 'PUSH',
   isTestnet: true
 }

@@ -170,21 +170,21 @@ export default function ContractPanel({
           )}
 
           {/* Network Info */}
-          <div className="glass-card bg-blue-900/20 border-blue-500/30 hover-glow">
-            <h4 className="font-semibold text-blue-200 mb-4 flex items-center space-x-2">
+          <div className="glass-card bg-purple-900/20 border-purple-500/30 hover-glow">
+            <h4 className="font-semibold text-purple-200 mb-4 flex items-center space-x-2">
               <div className="status-online"></div>
-              <span>Creditcoin Testnet</span>
+              <span>Push Chain Testnet</span>
             </h4>
-            <div className="text-sm text-blue-300 space-y-2">
+            <div className="text-sm text-purple-300 space-y-2">
               <div className="flex justify-between">
                 <span>Chain ID:</span>
-                <span className="font-mono">102031</span>
+                <span className="font-mono">1998</span>
               </div>
               <div className="flex justify-between">
                 <span>Network:</span>
                 <span className="font-mono">Testnet</span>
               </div>
-              <div className="text-xs text-blue-400 mt-3">
+              <div className="text-xs text-purple-400 mt-3">
                 🔗 Connected to live testnet
               </div>
             </div>

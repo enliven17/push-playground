@@ -18,7 +18,7 @@ async function main() {
   
   // Verify contract on explorer (if supported)
   console.log("Contract deployed successfully!");
-  console.log("Explorer URL:", `https://explorer.testnet.push0.org/address/${contractAddress}`);
+  console.log("Explorer URL:", `https://testnet-explorer.push0.org/address/${contractAddress}`);
 }
 
 main()

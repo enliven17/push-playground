@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         console.log(`Successfully connected to: ${rpcUrl}`);
         break;
       } catch (error) {
-        console.log(`Failed to connect to ${rpcUrl}:`, error instanceof Error ? error.message : String(error));
+        console.log(`Failed to connect to ${rpcUrl}:`, error.message);
         lastError = error;
         provider = null;
         isLocalNetwork = false;

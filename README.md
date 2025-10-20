@@ -59,7 +59,7 @@ To get Push Chain testnet tokens:
 1. Visit the Push Chain Donut Testnet faucet
 2. Enter your wallet address
 3. Request test PC tokens
-4. Or check the [official documentation](https://pushchain.github.io/push-chain-website/)
+4. Or check the [official documentation](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs)
 
 ## Usage
 
@@ -247,11 +247,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Links
 
-- [Push Chain Official Website](https://pushchain.github.io/push-chain-website/)
-- [Push Chain Documentation](https://pushchain.github.io/push-chain-website/docs/)
+- [Push Chain Official Website](https://pushchain.github.io/)
+- [Push Chain Documentation](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs)
 - [Push Chain Explorer](https://donut.push.network/)
 - [Push Chain GitHub](https://github.com/pushchain)
-- [Push Chain Documentation](https://pushchain.github.io/push-chain-website/)
 
 ## Support
 

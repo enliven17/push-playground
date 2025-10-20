@@ -28,7 +28,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a 
-              href="https://pushchain.github.io/push-chain-website/docs/" 
+              href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/90 hover:text-white transition-all duration-300 font-medium hover:scale-105"
@@ -69,7 +69,7 @@ export default function Header() {
           <div className="md:hidden py-6 border-t border-white/20 glass-card mt-4 mx-4 rounded-2xl">
             <nav className="flex flex-col space-y-4 px-4">
               <a 
-                href="https://pushchain.github.io/push-chain-website/docs/" 
+                href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white/90 hover:text-white transition-all duration-300 font-medium py-2"

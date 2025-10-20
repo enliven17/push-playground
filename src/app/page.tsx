@@ -93,7 +93,7 @@ export default function Home() {
             <span className="text-gray-300">Push Chain Donut Testnet</span>
           </div>
           <a 
-            href="https://pushchain.github.io/push-chain-website/docs/" 
+            href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-xs text-gray-400 hover:text-gray-200 transition-colors"

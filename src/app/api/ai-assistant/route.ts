@@ -38,15 +38,23 @@ Best Practices:
 `,
 
     deployment: `
-Deploying Smart Contracts on Push Chain Donut Testnet:
+Deploying Smart Contracts using Push Playground:
 
-1. Configure your wallet with Push Chain Donut testnet
-2. Get testnet PC tokens from faucet
-3. Compile your contract
-4. Deploy using web3 tools or IDE
-5. Verify contract on block explorer
+PLAYGROUND DEPLOYMENT PROCESS:
+1. Write contract in the code editor (left panel)
+2. Click "Compile" tab → "Compile" button
+3. Configure wallet by entering private key in wallet section
+4. Click "Deploy" tab → "Deploy" button
+5. Check results in terminal and explorer link
 
-Network Configuration:
+PLAYGROUND FEATURES:
+- Built-in Solidity compiler
+- Automatic network connection to Push Chain Donut Testnet
+- No MetaMask configuration needed
+- Real-time compilation and deployment feedback
+- Integrated block explorer links
+
+Network Details (handled automatically):
 - Network Name: Push Chain Donut Testnet
 - RPC URL: https://evm.rpc-testnet-donut-node2.push.org/
 - Chain ID: 42101
@@ -57,15 +65,18 @@ Network Configuration:
     gasOptimization: `
 Gas Optimization Tips for Push Chain:
 
-1. Use appropriate data types (uint256 vs uint8)
-2. Pack struct variables efficiently
-3. Use events instead of storing data when possible
-4. Minimize external calls
-5. Use view/pure functions when possible
-6. Consider using libraries for common functions
-7. Batch operations when possible
-8. Use mapping instead of arrays for lookups
-9. Leverage Push Chain's efficient architecture
+1. Data Types: Use smaller data types (uint8, uint16) when possible instead of uint256
+2. Struct Packing: Order struct variables by size to pack them into fewer storage slots
+3. Storage vs Memory: Use memory for temporary data, storage only for persistent data
+4. Events: Use events for logging instead of storing non-critical data
+5. External Calls: Minimize calls to other contracts, batch when possible
+6. View/Pure Functions: Use these modifiers when functions don't modify state
+7. Libraries: Use proven libraries like OpenZeppelin for common functionality
+8. Mappings: Prefer mappings over arrays for key-value lookups
+9. Push Chain Benefits: Lower base gas costs and faster finality
+10. Batch Operations: Group multiple operations in single transaction when possible
+
+IMPORTANT: Push Chain is EVM-compatible, so standard Solidity optimization techniques apply.
 `,
 
     security: `
@@ -95,26 +106,29 @@ Security Best Practices:
     pushFeatures: `
 Push Chain Specific Features:
 
-1. Communication Protocols:
-   - Built-in notification systems
-   - Decentralized messaging capabilities
-   - Cross-chain communication support
+1. Network Benefits:
+   - Lower gas costs compared to Ethereum mainnet
+   - Faster block times and transaction finality
+   - EVM-compatible (use existing Solidity knowledge)
+   - Stable testnet environment for development
 
-2. Web3 Integration:
-   - Native support for dApps
-   - Enhanced user experience features
-   - Seamless wallet integration
+2. Development Experience:
+   - Standard Ethereum tooling works (Hardhat, Remix, etc.)
+   - Same Solidity compiler and syntax
+   - Familiar MetaMask integration
+   - Block explorer for transaction verification
 
-3. Developer Tools:
-   - Push Chain SDK
-   - Notification APIs
-   - Communication libraries
+3. Testnet Advantages:
+   - Free testnet tokens for development
+   - Reliable RPC endpoints
+   - Active development community
+   - Regular network updates
 
 4. Use Cases:
-   - Decentralized notifications
-   - Real-time messaging dApps
-   - Cross-chain applications
-   - Web3 communication protocols
+   - DeFi applications with lower fees
+   - NFT marketplaces with faster transactions
+   - Gaming dApps with quick interactions
+   - Any EVM-compatible smart contract
 `
 }
 
@@ -158,49 +172,65 @@ function generateResponse(message: string, contractCode?: string): string {
         return `🚀 Push Chain Communication Features:
 
 📢 Decentralized Notifications:
-- Send notifications directly from smart contracts
-- Cross-chain notification support
-- Real-time messaging capabilities
+• Send notifications directly from smart contracts
+• Cross-chain notification support
+• Real-time messaging capabilities
 
 💬 Communication Protocols:
-- Built-in messaging systems
-- Secure peer-to-peer communication
-- Web3 native communication
+• Built-in messaging systems
+• Secure peer-to-peer communication
+• Web3 native communication
 
 🔧 Developer Tools:
-- Push Chain SDK for notifications
-- Communication APIs
-- Integration libraries
+• Push Chain SDK for notifications
+• Communication APIs
+• Integration libraries
 
 📋 Example Use Cases:
-- DeFi protocol notifications
-- Gaming event alerts
-- Social media dApps
-- Cross-chain messaging
+• DeFi protocol notifications
+• Gaming event alerts
+• Social media dApps
+• Cross-chain messaging
 
 Want to see an example notification contract?`
     }
 
     // Deployment help
     if (lowerMessage.includes('deploy')) {
-        return `To deploy your contract on Push Chain Donut Testnet:
+        return `To deploy your contract using Push Playground:
 
-1. Configure Network: Add Push Chain Donut testnet to your wallet
-   - RPC: https://evm.rpc-testnet-donut-node2.push.org/
-   - Chain ID: 42101
+📝 **Step 1: Write Your Contract**
+• Use the code editor on the left to write your Solidity contract
+• Choose from templates or write from scratch
 
-2. Get Test Tokens: Get testnet PC tokens from Push Chain faucet
+🔧 **Step 2: Compile**
+• Click the "Compile" tab in the right panel
+• Click the "Compile" button
+• Wait for successful compilation (green checkmark)
 
-3. Compile: Make sure your contract compiles without errors
+🔑 **Step 3: Configure Wallet**
+• Scroll down to "Wallet Configuration" section
+• Enter your private key (testnet wallet only!)
+• The playground will show your wallet address
 
-4. Deploy: Use the Deploy tab in this playground or your preferred tool
+🚀 **Step 4: Deploy**
+• Click the "Deploy" tab in the right panel
+• Make sure compilation was successful
+• Click the "Deploy" button
+• Wait for deployment confirmation
 
-5. Verify: Check your contract on https://donut.push.network
+✅ **Step 5: Verify**
+• Check the deployment result in the terminal
+• Click the explorer link to view your contract
+• Contract address will be shown in the results
 
-🚀 Push Chain Benefits:
-- Fast transactions and low fees
-- EVM compatibility
-- Built-in communication features
+💡 **Push Playground Features:**
+• No need to configure MetaMask manually
+• Automatic network connection to Push Chain Donut Testnet
+• Built-in compiler and deployment tools
+• Real-time terminal feedback
+
+⚠️ **Important:** Only use testnet private keys, never mainnet keys!
 
 Need help with any specific step?`
     }
@@ -210,27 +240,29 @@ Need help with any specific step?`
         return `Here are key gas optimization tips for Push Chain:
 
 🔧 Storage Optimization:
-- Pack struct variables (use uint128 instead of uint256 when possible)
-- Use mapping instead of arrays for lookups
-- Delete unused storage variables
+• Use smaller data types when possible (uint8 vs uint256)
+• Order struct variables by size for automatic packing
+• Use mappings instead of arrays for lookups
+• Delete unused storage variables with 'delete' keyword
 
 ⚡ Code Optimization:
-- Use view/pure functions when possible
-- Minimize external calls
-- Batch operations together
-- Use events instead of storing data
+• Use view/pure functions when possible (no gas for reads)
+• Minimize external contract calls
+• Batch multiple operations in single transaction
+• Use events for logging (cheaper than storage)
 
 💡 Push Chain Advantages:
-- Efficient architecture for lower gas costs
-- Fast block times reduce wait times
-- Optimized for communication protocols
+• EVM-compatible with standard Solidity optimizations
+• Lower base gas costs compared to Ethereum
+• Fast block times reduce transaction wait times
 
 🎯 Best Practices:
-- Test gas usage on Donut testnet first
-- Use Solidity optimizer
-- Consider using libraries for common functions
+• Enable Solidity optimizer in compiler settings
+• Test gas usage on Donut testnet first
+• Use OpenZeppelin libraries for security and efficiency
+• Avoid loops with unbounded iterations
 
-Current gas price on Push Chain Donut testnet is around 20 gwei.`
+Current gas price on Push Chain Donut testnet is typically around 20 gwei.`
     }
 
     // Security advice
@@ -238,30 +270,30 @@ Current gas price on Push Chain Donut testnet is around 20 gwei.`
         return `🛡️ Security Best Practices for Push Chain:
 
 Access Control:
-- Use OpenZeppelin's Ownable or AccessControl
-- Implement proper role-based permissions
-- Always validate inputs
+• Use OpenZeppelin's Ownable or AccessControl
+• Implement proper role-based permissions
+• Always validate inputs
 
 Reentrancy Protection:
-- Use ReentrancyGuard modifier
-- Follow checks-effects-interactions pattern
-- Be careful with external calls
+• Use ReentrancyGuard modifier
+• Follow checks-effects-interactions pattern
+• Be careful with external calls
 
 Push Chain Specific:
-- Secure communication protocols
-- Validate notification data
-- Protect against spam attacks
+• Secure communication protocols
+• Validate notification data
+• Protect against spam attacks
 
 Common Vulnerabilities:
-- Never use tx.origin for authorization
-- Validate all external contract calls
-- Use pull over push for payments
-- Be careful with delegatecall
+• Never use tx.origin for authorization
+• Validate all external contract calls
+• Use pull over push for payments
+• Be careful with delegatecall
 
 Testing:
-- Test thoroughly on Donut testnet
-- Use static analysis tools
-- Consider formal verification for critical contracts
+• Test thoroughly on Donut testnet
+• Use static analysis tools
+• Consider formal verification for critical contracts
 
 Would you like me to review your current contract for security issues?`
     }
@@ -270,71 +302,53 @@ Would you like me to review your current contract for security issues?`
     return `I'm here to help with Push Chain development! I can assist with:
 
 📚 Documentation & Guides
-- Smart contract development
-- Deployment procedures
-- Network configuration
-- Push Chain communication features
+• Smart contract development
+• Deployment procedures
+• Network configuration
+• Push Chain communication features
 
 🔧 Code Analysis
-- Contract review and explanation
-- Gas optimization suggestions
-- Security best practices
+• Contract review and explanation
+• Gas optimization suggestions
+• Security best practices
 
 🚀 Push Chain Features
-- Decentralized notifications
-- Communication protocols
-- Web3 integration
+• Decentralized notifications
+• Communication protocols
+• Web3 integration
 
 💡 Quick Tips
-- Push Chain uses EVM, so Ethereum tools work
-- Donut Testnet Chain ID: 42101
-- Block explorer: donut.push.network
-- Built for Web3 communication
+• Push Chain uses EVM, so Ethereum tools work
+• Donut Testnet Chain ID: 42101
+• Block explorer: donut.push.network
+• Built for Web3 communication
 
 What specific topic would you like help with?`
 }
 
 function analyzeContract(contractCode: string): string {
-    const analysis = []
+    const contractMatch = contractCode.match(/contract\s+(\w+)/)
+    const contractName = contractMatch ? contractMatch[1] : 'Contract'
+    
+    const functions = contractCode.match(/function\s+(\w+)/g) || []
+    const hasOwner = contractCode.includes('owner')
+    const hasEvents = contractCode.includes('event')
+    const hasRequire = contractCode.includes('require')
 
-    // Basic contract analysis
-    if (contractCode.includes('contract ')) {
-        const contractMatch = contractCode.match(/contract\s+(\w+)/)
-        if (contractMatch) {
-            analysis.push(`📋 Contract: ${contractMatch[1]}`)
-        }
-    }
+    let purpose = 'Basic contract'
+    if (contractCode.includes('message')) purpose = 'Message storage'
+    if (contractCode.includes('token') || contractCode.includes('balance')) purpose = 'Token contract'
+    if (contractCode.includes('vote') || contractCode.includes('proposal')) purpose = 'Voting system'
 
-    // Check for functions
-    const functions = contractCode.match(/function\s+\w+/g)
-    if (functions) {
-        analysis.push(`🔧 Functions: Found ${functions.length} function(s)`)
-    }
+    return `🔍 **${contractName}** - ${purpose}
 
-    // Check for events
-    const events = contractCode.match(/event\s+\w+/g)
-    if (events) {
-        analysis.push(`📢 Events: Found ${events.length} event(s)`)
-    }
+🔧 **Key Features:**
+• ${functions.length} functions: ${functions.slice(0, 3).map(f => f.replace('function ', '')).join(', ')}
+• ${hasOwner ? '✅ Owner access control' : '⚠️ No access control'}
+• ${hasEvents ? '📢 Event logging' : '📝 No events'}
+• ${hasRequire ? '🛡️ Input validation' : '⚠️ No validation'}
 
-    // Security checks
-    const securityIssues = []
-    if (!contractCode.includes('onlyOwner') && contractCode.includes('owner')) {
-        securityIssues.push('Consider using access control modifiers')
-    }
-    if (contractCode.includes('transfer') && !contractCode.includes('ReentrancyGuard')) {
-        securityIssues.push('Consider reentrancy protection for transfers')
-    }
-
-    let result = `🔍 Contract Analysis:\n\n${analysis.join('\n')}`
-
-    if (securityIssues.length > 0) {
-        result += `\n\n⚠️ Security Suggestions:\n${securityIssues.map(issue => `- ${issue}`).join('\n')}`
-    }
-
-    result += '\n\nWould you like me to explain any specific part of your contract?'
-
-    return result
+💡 ${hasOwner && hasRequire ? 'Well-structured contract!' : 'Consider adding access control and validation.'}`
 }
 
 async function callGroqAPI(message: string, contractCode?: string, conversationHistory?: any[]): Promise<string> {
@@ -348,29 +362,34 @@ async function callGroqAPI(message: string, contractCode?: string, conversationH
   console.log('All env keys:', Object.keys(process.env).filter(key => key.includes('GROQ')))
 
     try {
-        const systemPrompt = `You are a Push Chain AI Assistant, an expert in blockchain development and smart contracts specifically for the Push Chain platform. 
+        const systemPrompt = `You are a Push Chain AI Assistant. Be CONCISE and helpful.
 
-PUSH CHAIN PLATFORM INFO:
-${Object.values(PUSH_CHAIN_DOCS).join('\n\n')}
+CRITICAL RULES:
+- NEVER repeat user's contract code in your response
+- Keep explanations SHORT (max 5-6 lines)
+- Use bullet points and emojis for readability
+- Focus on key insights, not obvious details
+- Don't explain basic Solidity syntax
 
-Your role:
-- Help developers with Push Chain smart contract development
-- Provide accurate information about Push Chain Donut Testnet
-- Analyze smart contracts for security and optimization
-- Give practical, actionable advice about Push Chain features
-- Be concise but thorough
-- Always mention Push Chain-specific details when relevant
-- Highlight Push Chain's communication and Web3 capabilities
-
-Current context:
-- User is working in Push Chain Playground IDE
+PUSH CHAIN INFO:
+- EVM-compatible blockchain with lower costs and faster finality
 - Donut Testnet Chain ID: 42101
-- Primary RPC: https://evm.rpc-testnet-donut-node2.push.org/
-- Alternative RPC: https://evm.rpc-testnet-donut-node1.push.org/
-- Explorer: https://donut.push.network
-- Documentation: https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs
+- User is in Push Playground IDE with built-in tools
 
-${contractCode ? `\nCurrent contract code:\n\`\`\`solidity\n${contractCode}\n\`\`\`` : ''}`
+CONTRACT ANALYSIS FORMAT:
+🔍 **Quick Analysis:**
+• [Contract name] - [brief purpose]
+• Key features: [2-3 main functions]
+• Security: [any notable security features]
+• Gas efficiency: [any optimizations]
+
+DEPLOYMENT HELP FORMAT:
+📝 **Push Playground Steps:**
+1. Write code → 2. Compile → 3. Add wallet → 4. Deploy
+
+Keep responses under 100 words when possible.
+
+${contractCode ? `\nUser's contract is visible to them - don't repeat it.` : ''}`
 
         const messages = [
             { role: 'system', content: systemPrompt },

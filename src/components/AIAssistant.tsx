@@ -151,7 +151,22 @@ export default function AIAssistant({ contractCode }: AIAssistantProps) {
                         : 'bg-[#2d2d30] text-white border border-white/10'
                     }`}
                   >
-                    <p className="whitespace-pre-wrap">{message.content}</p>
+                    <div className="whitespace-pre-wrap">
+                      {message.content.split('\n').map((line, index) => (
+                        <div key={index}>
+                          {line.split(/(\*\*.*?\*\*)/).map((part, partIndex) => {
+                            if (part.startsWith('**') && part.endsWith('**')) {
+                              return (
+                                <strong key={partIndex} className="font-semibold">
+                                  {part.slice(2, -2)}
+                                </strong>
+                              )
+                            }
+                            return part
+                          })}
+                        </div>
+                      ))}
+                    </div>
                     <p className="text-xs opacity-60 mt-1">
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>

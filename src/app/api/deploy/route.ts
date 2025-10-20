@@ -27,25 +27,49 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Connect to Push Chain testnet - trying multiple endpoints
+    // Connect to Push Chain Donut Testnet with fallback
     let provider;
     const rpcUrls = [
-      'https://rpc-testnet.push0.org',
-      'https://testnet.push0.org/rpc',
-      'https://push-testnet.rpc.thirdweb.com',
-      'https://rpc.testnet.pushchain.org'
+      'https://evm.rpc-testnet-donut-node2.push.org/',
+      'https://evm.rpc-testnet-donut-node1.push.org/',
+      // Fallback to local hardhat if testnet is down
+      'http://127.0.0.1:8545'
     ];
     
-    // Try different RPC URLs
+    let lastError;
+    let isLocalNetwork = false;
+    
     for (const rpcUrl of rpcUrls) {
       try {
-        provider = new ethers.JsonRpcProvider(rpcUrl);
-        // Test the connection
-        await provider.getNetwork();
-        console.log(`Connected to Push Chain testnet via: ${rpcUrl}`);
+        console.log(`Attempting to connect to: ${rpcUrl}`);
+        
+        if (rpcUrl.includes('127.0.0.1')) {
+          isLocalNetwork = true;
+          provider = new ethers.JsonRpcProvider(rpcUrl, {
+            chainId: 1337,
+            name: 'hardhat-local'
+          });
+        } else {
+          provider = new ethers.JsonRpcProvider(rpcUrl, {
+            chainId: 42101,
+            name: 'push-donut-testnet'
+          });
+        }
+        
+        // Test connection with shorter timeout
+        const networkPromise = provider.getNetwork();
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Connection timeout')), 5000)
+        );
+        
+        await Promise.race([networkPromise, timeoutPromise]);
+        console.log(`Successfully connected to: ${rpcUrl}`);
         break;
       } catch (error) {
         console.log(`Failed to connect to ${rpcUrl}:`, error.message);
+        lastError = error;
+        provider = null;
+        isLocalNetwork = false;
         continue;
       }
     }
@@ -53,7 +77,7 @@ export async function POST(request: NextRequest) {
     if (!provider) {
       return NextResponse.json({
         success: false,
-        error: 'Unable to connect to Push Chain testnet. Please check network configuration.'
+        error: `Unable to connect to any network. Push Chain Donut Testnet may be down. Try starting local Hardhat network with 'npx hardhat node'. Last error: ${lastError?.message || 'Unknown error'}`
       });
     }
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -86,10 +110,14 @@ export async function POST(request: NextRequest) {
       transactionHash: contract.deploymentTransaction()?.hash,
       deployerAddress: wallet.address,
       networkInfo: {
-        chainId: 1998,
-        networkName: 'Push Testnet',
-        explorerUrl: `https://explorer-testnet.push0.org/address/${contractAddress}`,
-        txExplorerUrl: `https://explorer-testnet.push0.org/tx/${contract.deploymentTransaction()?.hash}`
+        chainId: isLocalNetwork ? 1337 : 42101,
+        networkName: isLocalNetwork ? 'Local Hardhat Network' : 'Push Chain Donut Testnet',
+        explorerUrl: isLocalNetwork 
+          ? `Local deployment - Contract: ${contractAddress}`
+          : `https://donut.push.network/address/${contractAddress}`,
+        txExplorerUrl: isLocalNetwork
+          ? `Local transaction: ${contract.deploymentTransaction()?.hash}`
+          : `https://donut.push.network/tx/${contract.deploymentTransaction()?.hash}`
       }
     })
 

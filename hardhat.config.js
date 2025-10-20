@@ -16,11 +16,12 @@ module.exports = {
       chainId: 1337
     },
     "push-testnet": {
-      url: "https://rpc-testnet.push0.org",
-      chainId: 1998,
+      url: "https://evm.rpc-testnet-donut-node2.push.org/",
+      chainId: 42101,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 20000000000, // 20 gwei
-      gas: 6000000
+      gas: 6000000,
+      timeout: 60000
     }
   },
   paths: {

@@ -1,11 +1,11 @@
 import { NetworkConfig } from '@/types/contract'
 
 export const PUSH_TESTNET: NetworkConfig = {
-  name: 'Push Testnet',
-  chainId: 1998,
-  rpcUrl: 'https://rpc-testnet.push0.org',
-  explorerUrl: 'https://explorer-testnet.push0.org',
-  symbol: 'PUSH',
+  name: 'Push Chain Donut Testnet',
+  chainId: 42101,
+  rpcUrl: 'https://evm.rpc-testnet-donut-node2.push.org/',
+  explorerUrl: 'https://donut.push.network',
+  symbol: 'PC',
   isTestnet: true
 }
 

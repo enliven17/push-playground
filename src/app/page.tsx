@@ -90,7 +90,7 @@ export default function Home() {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2 text-sm">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-gray-300">Push Testnet</span>
+            <span className="text-gray-300">Push Chain Donut Testnet</span>
           </div>
           <a 
             href="https://pushchain.github.io/push-chain-website/docs/" 
@@ -101,7 +101,7 @@ export default function Home() {
             Docs ↗
           </a>
           <a 
-            href="https://testnet-explorer.push0.org/" 
+            href="https://donut.push.network/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-xs text-gray-400 hover:text-gray-200 transition-colors"
@@ -356,7 +356,7 @@ export default function Home() {
           <span>CRLF</span>
         </div>
         <div className="flex items-center space-x-4">
-          <span>Chain ID: 1998</span>
+          <span>Chain ID: 42101</span>
           <span>Gas Price: 20 gwei</span>
           <span className="flex items-center space-x-1">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>

@@ -42,19 +42,23 @@ Replace the `PRIVATE_KEY` variable in `.env.local` with your own private key.
 3. Enter the following information:
 
 ```
-Network Name: Push Testnet
-RPC URL: https://rpc-testnet.push0.org
-Chain ID: 1998
-Currency Symbol: PUSH
-Block Explorer: https://explorer-testnet.push0.org
+Network Name: Push Chain Donut Testnet
+RPC URL: https://evm.rpc-testnet-donut-node2.push.org/
+Chain ID: 42101
+Currency Symbol: PC
+Block Explorer: https://donut.push.network
 ```
+
+**Alternative RPC URLs:**
+- Primary: https://evm.rpc-testnet-donut-node2.push.org/
+- Secondary: https://evm.rpc-testnet-donut-node1.push.org/
 
 ### Getting Test Tokens
 
 To get Push Chain testnet tokens:
-1. Visit the [Push Chain Faucet](https://faucet-testnet.push0.org)
+1. Visit the Push Chain Donut Testnet faucet
 2. Enter your wallet address
-3. Request test tokens
+3. Request test PC tokens
 4. Or check the [official documentation](https://pushchain.github.io/push-chain-website/)
 
 ## Usage
@@ -174,8 +178,8 @@ Derlenmiş contractı deploy eder.
   "contractAddress": "0x...",
   "transactionHash": "0x...",
   "networkInfo": {
-    "chainId": 1998,
-    "explorerUrl": "https://explorer-testnet.push0.org/address/0x..."
+    "chainId": 42101,
+    "explorerUrl": "https://donut.push.network/address/0x..."
   }
 }
 ```
@@ -187,7 +191,7 @@ Derlenmiş contractı deploy eder.
 - **Editor**: Monaco Editor
 - **Blockchain**: Ethers.js v6
 - **Smart Contracts**: Hardhat, Solidity 0.8.19
-- **Network**: Push Chain Testnet
+- **Network**: Push Chain Donut Testnet
 
 ## Development
 
@@ -221,12 +225,12 @@ npm run lint
 
 ### Deployment Error
 - Ensure private key is correct
-- Check that wallet has sufficient PUSH tokens
+- Check that wallet has sufficient PC tokens
 - Check network connection
 
 ### MetaMask Connection Issue
 - Check network settings
-- Ensure Chain ID is 1998
+- Ensure Chain ID is 42101
 - Verify RPC URL is correct
 
 ## Contributing
@@ -245,9 +249,9 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 - [Push Chain Official Website](https://pushchain.github.io/push-chain-website/)
 - [Push Chain Documentation](https://pushchain.github.io/push-chain-website/docs/)
-- [Push Chain Explorer](https://testnet-explorer.push0.org/)
+- [Push Chain Explorer](https://donut.push.network/)
 - [Push Chain GitHub](https://github.com/pushchain)
-- [Push Chain Faucet](https://testnet-faucet.push0.org)
+- [Push Chain Documentation](https://pushchain.github.io/push-chain-website/)
 
 ## Support
 

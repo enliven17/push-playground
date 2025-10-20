@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     if (!provider) {
       return NextResponse.json({
         success: false,
-        error: `Unable to connect to any network. Push Chain Donut Testnet may be down. Try starting local Hardhat network with 'npx hardhat node'. Last error: ${lastError?.message || 'Unknown error'}`
+        error: `Unable to connect to any network. Push Chain Donut Testnet may be down. Try starting local Hardhat network with 'npx hardhat node'. Last error: ${lastError instanceof Error ? lastError.message : 'Unknown error'}`
       });
     }
     const wallet = new ethers.Wallet(privateKey, provider)

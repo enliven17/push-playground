@@ -14,7 +14,7 @@ graph TB
     D --> H[Groq API]
     D --> I[Rule-based System]
     
-    G --> J[Push Chain Testnet]
+    G --> J[Push Chain Donut Testnet]
     H --> K[Llama 3.1 Model]
 ```
 
@@ -28,7 +28,7 @@ graph TB
 
 ### /api/deploy
 - **Method**: POST
-- **Purpose**: Deploy contracts to Push Chain
+- **Purpose**: Deploy contracts to Push Chain Donut Testnet
 - **Input**: Bytecode, private key, constructor args
 - **Output**: Contract address, transaction hash
 
@@ -56,7 +56,7 @@ sequenceDiagram
     API-->>F: Compilation Result
     
     F->>API: POST /api/deploy
-    API->>EXT: Push Chain Network
+    API->>EXT: Push Chain Donut Testnet
     EXT-->>API: Transaction Receipt
     API-->>F: Deployment Result
     

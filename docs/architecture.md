@@ -24,9 +24,9 @@ graph TB
     M --> O[Rule-based Fallback]
     
     J --> P[Solidity Compiler]
-    K --> Q[Push Chain Testnet]
+    K --> Q[Push Chain Donut Testnet]
     
-    Q --> R["Chain ID: 1998"]
+    Q --> R["Chain ID: 42101"]
     Q --> S[Block Explorer]
 ```
 
@@ -56,6 +56,34 @@ graph LR
 - **Frontend**: Next.js 14, React, TypeScript
 - **Editor**: Monaco Editor (VS Code engine)
 - **Styling**: Tailwind CSS
-- **Blockchain**: Push Chain Testnet (EVM-compatible)
+- **Blockchain**: Push Chain Donut Testnet (EVM-compatible)
 - **AI**: Groq API with Llama 3.1
 - **Deployment**: Vercel
+
+## Push Chain Integration
+
+```mermaid
+graph TB
+    A[Push Playground Frontend] --> B[API Layer]
+    B --> C[Ethers.js Provider]
+    C --> D[Push Chain Donut Testnet]
+    
+    D --> E[Chain ID: 42101]
+    D --> F[RPC: evm.rpc-testnet-donut-node2.push.org]
+    D --> G[Explorer: donut.push.network]
+    D --> H[Currency: PC Token]
+    
+    B --> I[Contract Compilation]
+    B --> J[Contract Deployment]
+    B --> K[Transaction Monitoring]
+    
+    I --> L[Solidity Compiler]
+    J --> M[Contract Factory]
+    K --> N[Block Explorer API]
+    
+    style D fill:#9333ea
+    style E fill:#a855f7
+    style F fill:#a855f7
+    style G fill:#a855f7
+    style H fill:#a855f7
+```

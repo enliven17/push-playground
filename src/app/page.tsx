@@ -6,7 +6,7 @@ import ContractPanel from '@/components/ContractPanel'
 import AIAssistant from '@/components/AIAssistant'
 import WalletInput from '@/components/WalletInput'
 import NewFileModal from '@/components/NewFileModal'
-import { ToastProvider, useToast } from '@/contexts/ToastContext'
+import { useToast } from '@/contexts/ToastContext'
 
 // Force dynamic rendering to avoid static generation issues
 export const dynamic = 'force-dynamic'
@@ -36,7 +36,7 @@ contract MyContract {
     }
 }`
 
-function HomeContent() {
+export default function Home() {
   const [contractCode, setContractCode] = useState<string>(defaultContract)
   const [isCompiling, setIsCompiling] = useState(false)
   const [isDeploying, setIsDeploying] = useState(false)
@@ -395,13 +395,5 @@ contract ${fileName} {
       {/* AI Assistant */}
       <AIAssistant contractCode={contractCode} />
     </div>
-  )
-}
-
-export default function Home() {
-  return (
-    <ToastProvider>
-      <HomeContent />
-    </ToastProvider>
   )
 }

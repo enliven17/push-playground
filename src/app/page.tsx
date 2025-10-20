@@ -6,7 +6,7 @@ import ContractPanel from '@/components/ContractPanel'
 import AIAssistant from '@/components/AIAssistant'
 import WalletInput from '@/components/WalletInput'
 import NewFileModal from '@/components/NewFileModal'
-import { useToast } from '@/contexts/ToastContext'
+import { ToastProvider, useToast } from '@/contexts/ToastContext'
 
 const defaultContract = `// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
@@ -33,7 +33,7 @@ contract MyContract {
     }
 }`
 
-export default function Home() {
+function HomeContent() {
   const [contractCode, setContractCode] = useState<string>(defaultContract)
   const [isCompiling, setIsCompiling] = useState(false)
   const [isDeploying, setIsDeploying] = useState(false)
@@ -392,5 +392,13 @@ contract ${fileName} {
       {/* AI Assistant */}
       <AIAssistant contractCode={contractCode} />
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <ToastProvider>
+      <HomeContent />
+    </ToastProvider>
   )
 }

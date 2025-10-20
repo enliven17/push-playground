@@ -27,8 +27,35 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    // Connect to Push Chain testnet
-    const provider = new ethers.JsonRpcProvider('https://testnet-rpc.push0.org')
+    // Connect to Push Chain testnet - trying multiple endpoints
+    let provider;
+    const rpcUrls = [
+      'https://rpc-testnet.push0.org',
+      'https://testnet.push0.org/rpc',
+      'https://push-testnet.rpc.thirdweb.com',
+      'https://rpc.testnet.pushchain.org'
+    ];
+    
+    // Try different RPC URLs
+    for (const rpcUrl of rpcUrls) {
+      try {
+        provider = new ethers.JsonRpcProvider(rpcUrl);
+        // Test the connection
+        await provider.getNetwork();
+        console.log(`Connected to Push Chain testnet via: ${rpcUrl}`);
+        break;
+      } catch (error) {
+        console.log(`Failed to connect to ${rpcUrl}:`, error.message);
+        continue;
+      }
+    }
+    
+    if (!provider) {
+      return NextResponse.json({
+        success: false,
+        error: 'Unable to connect to Push Chain testnet. Please check network configuration.'
+      });
+    }
     const wallet = new ethers.Wallet(privateKey, provider)
 
     // Check wallet balance
@@ -61,8 +88,8 @@ export async function POST(request: NextRequest) {
       networkInfo: {
         chainId: 1998,
         networkName: 'Push Testnet',
-        explorerUrl: `https://testnet-explorer.push0.org/address/${contractAddress}`,
-        txExplorerUrl: `https://testnet-explorer.push0.org/tx/${contract.deploymentTransaction()?.hash}`
+        explorerUrl: `https://explorer-testnet.push0.org/address/${contractAddress}`,
+        txExplorerUrl: `https://explorer-testnet.push0.org/tx/${contract.deploymentTransaction()?.hash}`
       }
     })
 

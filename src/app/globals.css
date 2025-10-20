@@ -110,7 +110,7 @@ body {
 
 /* Button Styles */
 .btn-primary {
-  @apply relative overflow-hidden bg-gradient-to-r from-creditcoin-500 to-creditcoin-600 hover:from-creditcoin-600 hover:to-creditcoin-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+  @apply relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
   background-size: 200% 200%;
   animation: gradientShift 3s ease infinite;
 }
@@ -209,7 +209,7 @@ body {
 
 /* Hover effects */
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
 .hover-lift {
@@ -268,7 +268,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: linear-gradient(90deg, #a855f7, #ec4899);
   border-radius: 1px;
   animation: slideInLeft 0.3s ease-out;
 }

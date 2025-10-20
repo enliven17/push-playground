@@ -1,4 +1,4 @@
-# Creditcoin Playground Architecture
+# Push Playground Architecture
 
 ## System Overview
 
@@ -24,9 +24,9 @@ graph TB
     M --> O[Rule-based Fallback]
     
     J --> P[Solidity Compiler]
-    K --> Q[Creditcoin Testnet]
+    K --> Q[Push Chain Testnet]
     
-    Q --> R["Chain ID: 102031"]
+    Q --> R["Chain ID: 1998"]
     Q --> S[Block Explorer]
 ```
 
@@ -56,6 +56,6 @@ graph LR
 - **Frontend**: Next.js 14, React, TypeScript
 - **Editor**: Monaco Editor (VS Code engine)
 - **Styling**: Tailwind CSS
-- **Blockchain**: Creditcoin Testnet (EVM-compatible)
+- **Blockchain**: Push Chain Testnet (EVM-compatible)
 - **AI**: Groq API with Llama 3.1
 - **Deployment**: Vercel

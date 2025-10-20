@@ -1,12 +1,12 @@
-# Creditcoin Playground
+# Push Playground
 
-A smart contract playground developed for Creditcoin Testnet. Users can write, compile, and deploy smart contracts to Creditcoin testnet.
+A smart contract playground developed for Push Chain Testnet. Users can write, compile, and deploy smart contracts to Push Chain testnet.
 
 ## Features
 
 - 🔧 **Smart Contract Editor**: Solidity syntax highlighting with Monaco Editor
 - ⚡ **Fast Compilation**: Automatic contract compilation with Hardhat
-- 🚀 **Testnet Deploy**: One-click deployment to Creditcoin testnet
+- 🚀 **Testnet Deploy**: One-click deployment to Push Chain testnet
 - 🔍 **Explorer Integration**: View deployed contracts in the explorer
 - 📱 **Responsive Design**: Mobile and desktop compatible interface
 
@@ -15,7 +15,7 @@ A smart contract playground developed for Creditcoin Testnet. Users can write, c
 1. **Clone the repository:**
 ```bash
 git clone <repository-url>
-cd creditcoin-playground
+cd push-playground
 ```
 
 2. **Install dependencies:**
@@ -33,28 +33,29 @@ Replace the `PRIVATE_KEY` variable in `.env.local` with your own private key.
 
 ⚠️ **Security Warning**: Only use a private key from a wallet intended for testnet use!
 
-## Creditcoin Testnet Setup
+## Push Chain Testnet Setup
 
-### Adding Creditcoin Testnet to MetaMask
+### Adding Push Chain Testnet to MetaMask
 
 1. Open MetaMask
 2. Select "Add Network" from the network dropdown
 3. Enter the following information:
 
 ```
-Network Name: Creditcoin Testnet
-RPC URL: https://rpc.cc3-testnet.creditcoin.network
-Chain ID: 102031
-Currency Symbol: CTC
-Block Explorer: https://creditcoin-testnet.blockscout.com
+Network Name: Push Testnet
+RPC URL: https://rpc.testnet.push0.org
+Chain ID: 1998
+Currency Symbol: PUSH
+Block Explorer: https://explorer.testnet.push0.org
 ```
 
 ### Getting Test Tokens
 
-To get Creditcoin testnet tokens:
-1. Join the [Creditcoin Discord](https://discord.gg/creditcoin) channel
-2. Share your wallet address in the faucet channel
-3. Or check the [official documentation](https://docs.creditcoin.org/)
+To get Push Chain testnet tokens:
+1. Visit the [Push Chain Faucet](https://faucet.testnet.push0.org)
+2. Enter your wallet address
+3. Request test tokens
+4. Or check the [official documentation](https://pushchain.github.io/push-chain-website/)
 
 ## Usage
 
@@ -106,27 +107,29 @@ contract SimpleToken {
 }
 ```
 
-### Credit Score Contract
+### Push Notification Contract
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-contract CreditScore {
-    mapping(address => uint256) public creditScores;
+contract PushNotification {
+    mapping(address => string[]) public notifications;
     address public owner;
+    
+    event NotificationSent(address indexed user, string message);
     
     constructor() {
         owner = msg.sender;
     }
     
-    function updateScore(address user, uint256 score) public {
+    function sendNotification(address user, string memory message) public {
         require(msg.sender == owner, "Only owner");
-        require(score <= 1000, "Score too high");
-        creditScores[user] = score;
+        notifications[user].push(message);
+        emit NotificationSent(user, message);
     }
     
-    function getScore(address user) public view returns (uint256) {
-        return creditScores[user];
+    function getNotifications(address user) public view returns (string[] memory) {
+        return notifications[user];
     }
 }
 ```
@@ -171,8 +174,8 @@ Derlenmiş contractı deploy eder.
   "contractAddress": "0x...",
   "transactionHash": "0x...",
   "networkInfo": {
-    "chainId": 102031,
-    "explorerUrl": "https://creditcoin-testnet.blockscout.com/address/0x..."
+    "chainId": 1998,
+    "explorerUrl": "https://explorer.testnet.push0.org/address/0x..."
   }
 }
 ```
@@ -184,7 +187,7 @@ Derlenmiş contractı deploy eder.
 - **Editor**: Monaco Editor
 - **Blockchain**: Ethers.js v6
 - **Smart Contracts**: Hardhat, Solidity 0.8.19
-- **Network**: Creditcoin Testnet
+- **Network**: Push Chain Testnet
 
 ## Development
 
@@ -218,12 +221,12 @@ npm run lint
 
 ### Deployment Error
 - Ensure private key is correct
-- Check that wallet has sufficient CTC tokens
+- Check that wallet has sufficient PUSH tokens
 - Check network connection
 
 ### MetaMask Connection Issue
 - Check network settings
-- Ensure Chain ID is 102031
+- Ensure Chain ID is 1998
 - Verify RPC URL is correct
 
 ## Contributing
@@ -240,15 +243,15 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Links
 
-- [Creditcoin Official Website](https://creditcoin.org/)
-- [Creditcoin Documentation](https://docs.creditcoin.org/)
-- [Creditcoin Explorer](https://creditcoin-testnet.blockscout.com/)
-- [Creditcoin Discord](https://discord.gg/creditcoin)
-- [GitHub Repository](https://github.com/creditcoin-org)
+- [Push Chain Official Website](https://pushchain.github.io/push-chain-website/)
+- [Push Chain Documentation](https://pushchain.github.io/push-chain-website/docs/)
+- [Push Chain Explorer](https://explorer.testnet.push0.org/)
+- [Push Chain GitHub](https://github.com/pushchain)
+- [Push Chain Faucet](https://faucet.testnet.push0.org)
 
 ## Support
 
 For questions:
 - Open GitHub Issues
-- Join Discord channel
-- Check documentation
+- Check Push Chain documentation
+- Visit Push Chain community channels

@@ -49,9 +49,9 @@ export default function Home() {
   })
   const [cursorPosition, setCursorPosition] = useState({ line: 1, column: 1 })
   const [terminalLogs, setTerminalLogs] = useState<string[]>([
-    '$ creditcoin-playground',
-    'Welcome to Creditcoin Smart Contract IDE',
-    'Ready to compile and deploy contracts to Creditcoin testnet'
+    '$ push-playground',
+    'Welcome to Push Chain Smart Contract IDE',
+    'Ready to compile and deploy contracts to Push Chain testnet'
   ])
   const { showToast } = useToast()
 
@@ -64,7 +64,7 @@ export default function Home() {
       {/* IDE Header/Menu Bar */}
       <div className="bg-[#2d2d30] border-b border-[#3e3e42] px-4 py-2 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <span className="font-semibold text-sm">Creditcoin Playground</span>
+          <span className="font-semibold text-sm">Push Playground</span>
           
           {/* Menu Items */}
           <div className="flex items-center space-x-1 text-sm">
@@ -90,10 +90,10 @@ export default function Home() {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2 text-sm">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-gray-300">Creditcoin Testnet</span>
+            <span className="text-gray-300">Push Testnet</span>
           </div>
           <a 
-            href="https://docs.creditcoin.org/" 
+            href="https://pushchain.github.io/push-chain-website/docs/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-xs text-gray-400 hover:text-gray-200 transition-colors"
@@ -101,7 +101,7 @@ export default function Home() {
             Docs ↗
           </a>
           <a 
-            href="https://creditcoin-testnet.blockscout.com/" 
+            href="https://explorer.testnet.push0.org/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-xs text-gray-400 hover:text-gray-200 transition-colors"
@@ -265,7 +265,7 @@ export default function Home() {
                 }
                 
                 setIsDeploying(true)
-                addTerminalLog(`$ Deploying ${currentFileName} to Creditcoin testnet...`)
+                addTerminalLog(`$ Deploying ${currentFileName} to Push Chain testnet...`)
                 
                 try {
                   const response = await fetch('/api/deploy', {
@@ -356,7 +356,7 @@ export default function Home() {
           <span>CRLF</span>
         </div>
         <div className="flex items-center space-x-4">
-          <span>Chain ID: 102031</span>
+          <span>Chain ID: 1998</span>
           <span>Gas Price: 20 gwei</span>
           <span className="flex items-center space-x-1">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>

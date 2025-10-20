@@ -58,23 +58,23 @@ contract SimpleToken {
 }`
   },
   {
-    name: 'Credit Score Manager',
+    name: 'Push Notification Manager',
     category: 'utility',
-    description: 'Contract for credit score management',
+    description: 'Contract for managing push notifications',
     code: `// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-contract CreditScoreManager {
-    mapping(address => uint256) public creditScores;
-    mapping(address => uint256) public lastUpdate;
-    mapping(address => bool) public authorizedUpdaters;
+contract PushNotificationManager {
+    mapping(address => string[]) public notifications;
+    mapping(address => uint256) public notificationCount;
+    mapping(address => bool) public authorizedSenders;
     
     address public owner;
-    uint256 public constant MAX_SCORE = 1000;
-    uint256 public constant MIN_SCORE = 0;
+    uint256 public maxNotifications = 100;
     
-    event ScoreUpdated(address indexed user, uint256 newScore, address updater);
-    event UpdaterAuthorized(address indexed updater, bool authorized);
+    event NotificationSent(address indexed user, string message, address sender);
+    event SenderAuthorized(address indexed sender, bool authorized);
+    event NotificationCleared(address indexed user, uint256 count);
     
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the owner");
@@ -82,43 +82,62 @@ contract CreditScoreManager {
     }
     
     modifier onlyAuthorized() {
-        require(authorizedUpdaters[msg.sender] || msg.sender == owner, "Not authorized");
+        require(authorizedSenders[msg.sender] || msg.sender == owner, "Not authorized");
         _;
     }
     
     constructor() {
         owner = msg.sender;
-        authorizedUpdaters[msg.sender] = true;
+        authorizedSenders[msg.sender] = true;
     }
     
-    function updateCreditScore(address _user, uint256 _score) public onlyAuthorized {
-        require(_score >= MIN_SCORE && _score <= MAX_SCORE, "Score out of range");
+    function sendNotification(address _user, string memory _message) public onlyAuthorized {
+        require(bytes(_message).length > 0, "Message cannot be empty");
         
-        creditScores[_user] = _score;
-        lastUpdate[_user] = block.timestamp;
+        // Remove oldest notification if at max capacity
+        if (notifications[_user].length >= maxNotifications) {
+            for (uint256 i = 0; i < notifications[_user].length - 1; i++) {
+                notifications[_user][i] = notifications[_user][i + 1];
+            }
+            notifications[_user].pop();
+        }
         
-        emit ScoreUpdated(_user, _score, msg.sender);
-    }
-    
-    function getCreditScore(address _user) public view returns (uint256) {
-        return creditScores[_user];
-    }
-    
-    function getScoreAge(address _user) public view returns (uint256) {
-        if (lastUpdate[_user] == 0) return 0;
-        return block.timestamp - lastUpdate[_user];
-    }
-    
-    function authorizeUpdater(address _updater, bool _authorized) public onlyOwner {
-        authorizedUpdaters[_updater] = _authorized;
-        emit UpdaterAuthorized(_updater, _authorized);
-    }
-    
-    function batchUpdateScores(address[] memory _users, uint256[] memory _scores) public onlyAuthorized {
-        require(_users.length == _scores.length, "Arrays length mismatch");
+        notifications[_user].push(_message);
+        notificationCount[_user]++;
         
+        emit NotificationSent(_user, _message, msg.sender);
+    }
+    
+    function getNotifications(address _user) public view returns (string[] memory) {
+        return notifications[_user];
+    }
+    
+    function getNotificationCount(address _user) public view returns (uint256) {
+        return notificationCount[_user];
+    }
+    
+    function clearNotifications(address _user) public {
+        require(msg.sender == _user || msg.sender == owner, "Not authorized");
+        
+        uint256 count = notifications[_user].length;
+        delete notifications[_user];
+        
+        emit NotificationCleared(_user, count);
+    }
+    
+    function authorizeSender(address _sender, bool _authorized) public onlyOwner {
+        authorizedSenders[_sender] = _authorized;
+        emit SenderAuthorized(_sender, _authorized);
+    }
+    
+    function setMaxNotifications(uint256 _maxNotifications) public onlyOwner {
+        require(_maxNotifications > 0, "Max notifications must be greater than 0");
+        maxNotifications = _maxNotifications;
+    }
+    
+    function broadcastNotification(address[] memory _users, string memory _message) public onlyAuthorized {
         for (uint256 i = 0; i < _users.length; i++) {
-            updateCreditScore(_users[i], _scores[i]);
+            sendNotification(_users[i], _message);
         }
     }
 }`

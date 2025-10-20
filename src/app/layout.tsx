@@ -5,8 +5,8 @@ import { ToastProvider } from '@/contexts/ToastContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Creditcoin Playground',
-  description: 'Smart Contract Playground for Creditcoin Testnet',
+  title: 'Push Playground',
+  description: 'Smart Contract Playground for Push Chain Testnet',
   icons: {
     icon: '/playground.ico',
     shortcut: '/playground.ico',

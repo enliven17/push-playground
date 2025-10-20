@@ -14,7 +14,7 @@ graph TB
     D --> H[Groq API]
     D --> I[Rule-based System]
     
-    G --> J[Creditcoin Testnet]
+    G --> J[Push Chain Testnet]
     H --> K[Llama 3.1 Model]
 ```
 
@@ -28,7 +28,7 @@ graph TB
 
 ### /api/deploy
 - **Method**: POST
-- **Purpose**: Deploy contracts to Creditcoin
+- **Purpose**: Deploy contracts to Push Chain
 - **Input**: Bytecode, private key, constructor args
 - **Output**: Contract address, transaction hash
 
@@ -36,7 +36,7 @@ graph TB
 - **Method**: POST
 - **Purpose**: AI-powered development assistance
 - **Input**: User message, contract code, conversation history
-- **Output**: AI response with Creditcoin-specific guidance
+- **Output**: AI response with Push Chain-specific guidance
 
 ### /api/debug-env
 - **Method**: GET
@@ -56,7 +56,7 @@ sequenceDiagram
     API-->>F: Compilation Result
     
     F->>API: POST /api/deploy
-    API->>EXT: Creditcoin Network
+    API->>EXT: Push Chain Network
     EXT-->>API: Transaction Receipt
     API-->>F: Deployment Result
     

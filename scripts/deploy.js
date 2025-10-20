@@ -6,19 +6,19 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
   console.log("Account balance:", (await deployer.provider.getBalance(deployer.address)).toString());
 
-  // Deploy SendenCredit contract
-  const SendenCredit = await hre.ethers.getContractFactory("SendenCredit");
-  const sendenCredit = await SendenCredit.deploy(1000000); // 1M initial supply
+  // Deploy PushToken contract
+  const PushToken = await hre.ethers.getContractFactory("PushToken");
+  const pushToken = await PushToken.deploy(1000000); // 1M initial supply
 
-  await sendenCredit.waitForDeployment();
-  const contractAddress = await sendenCredit.getAddress();
+  await pushToken.waitForDeployment();
+  const contractAddress = await pushToken.getAddress();
 
-  console.log("SendenCredit deployed to:", contractAddress);
-  console.log("Transaction hash:", sendenCredit.deploymentTransaction().hash);
+  console.log("PushToken deployed to:", contractAddress);
+  console.log("Transaction hash:", pushToken.deploymentTransaction().hash);
   
   // Verify contract on explorer (if supported)
   console.log("Contract deployed successfully!");
-  console.log("Explorer URL:", `https://explorer.cc3-testnet.creditcoin.network/address/${contractAddress}`);
+  console.log("Explorer URL:", `https://explorer.testnet.push0.org/address/${contractAddress}`);
 }
 
 main()

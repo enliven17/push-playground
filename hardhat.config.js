@@ -15,9 +15,9 @@ module.exports = {
     hardhat: {
       chainId: 1337
     },
-    "creditcoin-testnet": {
-      url: "https://rpc.cc3-testnet.creditcoin.network",
-      chainId: 102031,
+    "push-testnet": {
+      url: "https://rpc.testnet.push0.org",
+      chainId: 1998,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       gasPrice: 20000000000, // 20 gwei
       gas: 6000000

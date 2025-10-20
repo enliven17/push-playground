@@ -1,16 +1,16 @@
 import { NetworkConfig } from '@/types/contract'
 
-export const CREDITCOIN_TESTNET: NetworkConfig = {
-  name: 'Creditcoin Testnet',
-  chainId: 102031,
-  rpcUrl: 'https://rpc.cc3-testnet.creditcoin.network',
-  explorerUrl: 'https://creditcoin-testnet.blockscout.com',
-  symbol: 'CTC',
+export const PUSH_TESTNET: NetworkConfig = {
+  name: 'Push Testnet',
+  chainId: 1998,
+  rpcUrl: 'https://rpc.testnet.push0.org',
+  explorerUrl: 'https://explorer.testnet.push0.org',
+  symbol: 'PUSH',
   isTestnet: true
 }
 
 export const SUPPORTED_NETWORKS: NetworkConfig[] = [
-  CREDITCOIN_TESTNET
+  PUSH_TESTNET
 ]
 
-export const DEFAULT_NETWORK = CREDITCOIN_TESTNET
+export const DEFAULT_NETWORK = PUSH_TESTNET

@@ -12,15 +12,15 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center space-x-4 hover-lift">
-            <div className="w-12 h-12 bg-gradient-to-br from-creditcoin-500 to-creditcoin-600 rounded-2xl flex items-center justify-center shadow-lg hover-glow">
-              <span className="text-white font-bold text-lg">CC</span>
+            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg hover-glow">
+              <span className="text-white font-bold text-lg">P</span>
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white drop-shadow-lg">
-                Creditcoin Playground
+                Push Playground
               </h1>
               <p className="text-sm text-white/80">
-                Testnet Smart Contract IDE
+                Push Chain Smart Contract IDE
               </p>
             </div>
           </div>
@@ -28,7 +28,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a 
-              href="https://docs.creditcoin.org/" 
+              href="https://pushchain.github.io/push-chain-website/docs/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/90 hover:text-white transition-all duration-300 font-medium hover:scale-105"
@@ -36,7 +36,7 @@ export default function Header() {
               Documentation
             </a>
             <a 
-              href="https://creditcoin-testnet.blockscout.com/" 
+              href="https://explorer.testnet.push0.org/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/90 hover:text-white transition-all duration-300 font-medium hover:scale-105"
@@ -69,7 +69,7 @@ export default function Header() {
           <div className="md:hidden py-6 border-t border-white/20 glass-card mt-4 mx-4 rounded-2xl">
             <nav className="flex flex-col space-y-4 px-4">
               <a 
-                href="https://docs.creditcoin.org/" 
+                href="https://pushchain.github.io/push-chain-website/docs/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white/90 hover:text-white transition-all duration-300 font-medium py-2"
@@ -77,7 +77,7 @@ export default function Header() {
                 Documentation
               </a>
               <a 
-                href="https://creditcoin-testnet.blockscout.com/" 
+                href="https://explorer.testnet.push0.org/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white/90 hover:text-white transition-all duration-300 font-medium py-2"

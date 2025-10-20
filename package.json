@@ -1,7 +1,7 @@
 {
-  "name": "creditcoin-playground",
+  "name": "push-playground",
   "version": "1.0.0",
-  "description": "Creditcoin Testnet Smart Contract Playground",
+  "description": "Push Chain Smart Contract Playground",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,7 @@
     "lint": "next lint",
     "setup": "node scripts/setup.js",
     "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.js --network creditcoin-testnet",
+    "deploy": "hardhat run scripts/deploy.js --network push-testnet",
     "test": "hardhat test"
   },
   "dependencies": {
@@ -38,12 +38,12 @@
     "eslint-config-next": "^14.0.0"
   },
   "keywords": [
-    "creditcoin",
+    "push-chain",
     "blockchain",
     "smart-contracts",
     "playground",
     "testnet"
   ],
-  "author": "Creditcoin Playground",
+  "author": "Push Playground",
   "license": "MIT"
 }

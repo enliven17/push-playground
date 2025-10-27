@@ -90,7 +90,7 @@ graph TB
 - **Blockchain**: Push Chain Donut Testnet (EVM-compatible)
 - **Web3**: Ethers.js v6, Push Chain Client
 - **AI**: Groq API with Llama 3.1
-- **Deployment**: Vercel
+- **Deployment**: Netlify / Vercel
 
 ## Push Chain Integration
 

@@ -180,6 +180,27 @@ Derlenmiş contractı deploy eder.
 }
 ```
 
+## Deployment
+
+This project can be deployed to **Netlify** or **Vercel**.
+
+### Netlify Deployment
+
+1. **Push to Git** and connect to Netlify
+2. Netlify will auto-detect Next.js and use `netlify.toml`
+3. The build will run automatically
+
+See [docs/deployment.md](docs/deployment.md) for detailed instructions.
+
+### Quick Deploy with Netlify CLI
+
+```bash
+npm install -g netlify-cli
+netlify login
+netlify init
+netlify deploy --prod
+```
+
 ## Technology Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
@@ -189,6 +210,7 @@ Derlenmiş contractı deploy eder.
 - **Blockchain**: Ethers.js v6, Push Chain Client
 - **Smart Contracts**: Hardhat, Solidity 0.8.19
 - **Network**: Push Chain Donut Testnet (Chain ID: 42101)
+- **Deployment**: Netlify / Vercel
 
 ## Development
 

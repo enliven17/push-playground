@@ -1,35 +1,19 @@
 'use client'
 
 import { ToastProvider } from '@/contexts/ToastContext'
-import { PushUniversalWalletProvider, PushUI } from '@pushchain/ui-kit'
+import dynamic from 'next/dynamic'
+import { ReactNode } from 'react'
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  const walletConfig = {
-    network: PushUI.CONSTANTS.PUSH_NETWORK.TESTNET,
-    login: {
-      email: true,
-      google: true,
-      wallet: {
-        enabled: true,
-      },
-      appPreview: true,
-    },
-    modal: {
-      loginLayout: PushUI.CONSTANTS.LOGIN.LAYOUT.SPLIT,
-      connectedLayout: PushUI.CONSTANTS.CONNECTED.LAYOUT.HOVER,
-      appPreview: true,
-    },
-  }
+// Dynamically import Push Wallet Provider with SSR disabled
+const PushWalletWrapper = dynamic(
+  () => import('./PushWalletWrapper'),
+  { ssr: false }
+)
 
-  const appMetadata = {
-    logoUrl: '/playground.ico',
-    title: 'Push Playground',
-    description: 'Smart Contract Playground for Push Chain Testnet',
-  }
-
+export default function Providers({ children }: { children: ReactNode }) {
   return (
-    <PushUniversalWalletProvider config={walletConfig} app={appMetadata}>
-      <ToastProvider>{children}</ToastProvider>
-    </PushUniversalWalletProvider>
+    <ToastProvider>
+      <PushWalletWrapper>{children}</PushWalletWrapper>
+    </ToastProvider>
   )
 }

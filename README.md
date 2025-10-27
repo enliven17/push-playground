@@ -1,14 +1,16 @@
 # Push Playground
 
-A smart contract playground developed for Push Chain Testnet. Users can write, compile, and deploy smart contracts to Push Chain testnet.
+A smart contract playground developed for Push Chain Testnet. Users can write, compile, and deploy smart contracts to Push Chain testnet with seamless wallet integration.
 
 ## Features
 
 - 🔧 **Smart Contract Editor**: Solidity syntax highlighting with Monaco Editor
+- 🔐 **Push Universal Wallet**: Seamless cross-chain wallet integration with email, Google, and Web3 wallet support
 - ⚡ **Fast Compilation**: Automatic contract compilation with Hardhat
 - 🚀 **Testnet Deploy**: One-click deployment to Push Chain testnet
 - 🔍 **Explorer Integration**: View deployed contracts in the explorer
 - 📱 **Responsive Design**: Mobile and desktop compatible interface
+- 🎨 **VS Code-like Interface**: Familiar IDE experience for developers
 
 ## Installation
 
@@ -23,43 +25,30 @@ cd push-playground
 npm install
 ```
 
-3. **Create environment file:**
+3. **Create environment file (optional):**
 ```bash
 cp .env.example .env.local
 ```
 
-4. **Add your private key:**
-Replace the `PRIVATE_KEY` variable in `.env.local` with your own private key.
+## Wallet Connection
 
-⚠️ **Security Warning**: Only use a private key from a wallet intended for testnet use!
+Push Playground uses **Push Universal Wallet** for seamless authentication. You can connect using:
 
-## Push Chain Testnet Setup
+- **Email**: Sign in with your email address
+- **Google**: Connect with your Google account
+- **Web3 Wallets**: MetaMask, WalletConnect, and other EVM wallets
+- **Manual Private Key**: Advanced option for direct private key input (testnet only)
 
-### Adding Push Chain Testnet to MetaMask
-
-1. Open MetaMask
-2. Select "Add Network" from the network dropdown
-3. Enter the following information:
-
-```
-Network Name: Push Chain Donut Testnet
-RPC URL: https://evm.rpc-testnet-donut-node2.push.org/
-Chain ID: 42101
-Currency Symbol: PC
-Block Explorer: https://donut.push.network
-```
-
-**Alternative RPC URLs:**
-- Primary: https://evm.rpc-testnet-donut-node2.push.org/
-- Secondary: https://evm.rpc-testnet-donut-node1.push.org/
+No additional wallet setup required - the Push Universal Wallet handles everything automatically!
 
 ### Getting Test Tokens
 
 To get Push Chain testnet tokens:
-1. Visit the Push Chain Donut Testnet faucet
-2. Enter your wallet address
-3. Request test PC tokens
-4. Or check the [official documentation](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs)
+1. Connect your wallet in the app
+2. Copy your wallet address
+3. Visit the Push Chain Donut Testnet faucet
+4. Request test PC tokens
+5. Check the [official documentation](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs) for more info
 
 ## Usage
 
@@ -71,17 +60,24 @@ npm run dev
 2. **Open in browser:**
 http://localhost:3000
 
-3. **Write Smart Contract:**
-- Write your contract code in the left panel
+3. **Connect Wallet:**
+- Click the "Connect Wallet" button in the right panel
+- Choose your preferred login method (Email, Google, or Web3 Wallet)
+- Authorize the connection
+
+4. **Write Smart Contract:**
+- Write your contract code in the editor
+- Use the file explorer to manage multiple contracts
 - Example templates are available
 
-4. **Compile:**
+5. **Compile:**
 - Click the "Compile" button
-- Check for errors
+- Check compilation results in the terminal
 
-5. **Deploy:**
+6. **Deploy:**
 - Switch to the "Deploy" tab
 - Click the "Deploy" button
+- Confirm the transaction in your wallet
 - Get the contract address and transaction hash
 
 ## Example Contracts
@@ -184,14 +180,15 @@ Derlenmiş contractı deploy eder.
 }
 ```
 
-## Teknoloji Stack
+## Technology Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
 - **Styling**: Tailwind CSS
 - **Editor**: Monaco Editor
-- **Blockchain**: Ethers.js v6
+- **Wallet**: Push Universal Wallet (@pushchain/ui-kit)
+- **Blockchain**: Ethers.js v6, Push Chain Client
 - **Smart Contracts**: Hardhat, Solidity 0.8.19
-- **Network**: Push Chain Donut Testnet
+- **Network**: Push Chain Donut Testnet (Chain ID: 42101)
 
 ## Development
 
@@ -224,14 +221,16 @@ npm run lint
 - Check import paths
 
 ### Deployment Error
-- Ensure private key is correct
+- Ensure wallet is connected
 - Check that wallet has sufficient PC tokens
-- Check network connection
+- Verify network connection
+- Try reconnecting your wallet
 
-### MetaMask Connection Issue
-- Check network settings
-- Ensure Chain ID is 42101
-- Verify RPC URL is correct
+### Wallet Connection Issue
+- Clear browser cache and try again
+- Check internet connection
+- Try a different login method
+- Ensure popup blockers are disabled
 
 ## Contributing
 
@@ -245,10 +244,22 @@ npm run lint
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
+## Push Universal Wallet Integration
+
+This project uses Push Universal Wallet for seamless authentication and wallet management. Key features:
+
+- **Cross-chain Support**: Works with EVM chains, Solana, and more
+- **Multiple Login Methods**: Email, Google, and Web3 wallets
+- **Universal Executor Account (UEA)**: Single account across all chains
+- **Built-in UI Components**: Pre-styled connect buttons and modals
+
+For more information, check the [Push UI Kit Documentation](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/ui-kit/integrate-push-universal-wallet/).
+
 ## Links
 
 - [Push Chain Official Website](https://pushchain.github.io/)
 - [Push Chain Documentation](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs)
+- [Push UI Kit Docs](https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/ui-kit/integrate-push-universal-wallet/)
 - [Push Chain Explorer](https://donut.push.network/)
 - [Push Chain GitHub](https://github.com/pushchain)
 

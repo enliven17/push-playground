@@ -1,11 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import dynamic from 'next/dynamic'
+import Providers from './providers'
 
 const inter = Inter({ subsets: ['latin'] })
-
-// Dynamically import Providers to avoid SSR issues
-const Providers = dynamic(() => import('./providers'), { ssr: false })
 
 export const metadata = {
   title: 'Push Playground',
@@ -18,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
           <div className="min-h-screen relative">

@@ -5,8 +5,11 @@
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "18"
-  NEXT_RUNTIME = "nodejs18.x"
+  NODE_VERSION = "20.20.0"
+  NEXT_RUNTIME = "nodejs20.x"
+  NPM_CONFIG_FETCH_RETRIES = "5"
+  NPM_CONFIG_FETCH_RETRY_FACTOR = "2"
+  NPM_CONFIG_FETCH_RETRY_MINTIMEOUT = "10000"
 
 # Next.js Image Optimization
 [[headers]]

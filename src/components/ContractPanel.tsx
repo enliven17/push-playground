@@ -207,21 +207,69 @@ export default function ContractPanel({
               </div>
               
               {deploymentResult.error && (
-                <div className="text-xs text-red-300 bg-red-900/30 p-2 rounded">
+                <div className="text-xs text-red-300 bg-red-900/30 p-2 rounded mb-2">
                   {deploymentResult.error}
+                </div>
+              )}
+              
+              {deploymentResult.success && (
+                <div className="space-y-2 mb-3">
+                  {deploymentResult.contractAddress ? (
+                    <>
+                      <div className="text-xs text-gray-300">
+                        <div className="font-medium mb-1">📍 Contract Address:</div>
+                        <div className="font-mono bg-black/30 p-2 rounded text-xs break-all border border-[#3e3e42]">
+                          {deploymentResult.contractAddress}
+                        </div>
+                        <button
+                          onClick={() => copyToClipboard(deploymentResult.contractAddress)}
+                          className="mt-1 text-blue-400 hover:text-blue-300 text-xs flex items-center space-x-1"
+                        >
+                          <ClipboardDocumentIcon className="h-3 w-3" />
+                          <span>Copy</span>
+                        </button>
+                      </div>
+                      
+                      {deploymentResult.transactionHash && (
+                        <div className="text-xs text-gray-300">
+                          <div className="font-medium mb-1">🔗 Transaction Hash:</div>
+                          <div className="font-mono bg-black/30 p-2 rounded text-xs break-all border border-[#3e3e42]">
+                            {deploymentResult.transactionHash}
+                          </div>
+                          <button
+                            onClick={() => copyToClipboard(deploymentResult.transactionHash)}
+                            className="mt-1 text-blue-400 hover:text-blue-300 text-xs flex items-center space-x-1"
+                          >
+                            <ClipboardDocumentIcon className="h-3 w-3" />
+                            <span>Copy</span>
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="text-xs text-gray-300 bg-blue-900/30 p-3 rounded border border-blue-500/30">
+                      <div className="font-medium mb-2">✅ Transaction Sent!</div>
+                      <div className="mb-2">Your contract is being deployed on Push Chain.</div>
+                      <div className="text-blue-300">
+                        Click "View TX" below to see your deployment transaction and contract address.
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
               
               {deploymentResult.success && deploymentResult.networkInfo && (
                 <div className="flex space-x-2">
-                  <a
-                    href={deploymentResult.networkInfo.explorerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center px-2 py-1 text-xs bg-white/10 hover:bg-white/20 rounded transition-colors"
-                  >
-                    📄 Contract
-                  </a>
+                  {deploymentResult.networkInfo.explorerUrl && (
+                    <a
+                      href={deploymentResult.networkInfo.explorerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center px-2 py-1 text-xs bg-white/10 hover:bg-white/20 rounded transition-colors"
+                    >
+                      📄 View Contract
+                    </a>
+                  )}
                   {deploymentResult.networkInfo.txExplorerUrl && (
                     <a
                       href={deploymentResult.networkInfo.txExplorerUrl}
@@ -229,7 +277,7 @@ export default function ContractPanel({
                       rel="noopener noreferrer"
                       className="flex-1 text-center px-2 py-1 text-xs bg-white/10 hover:bg-white/20 rounded transition-colors"
                     >
-                      🔗 Transaction
+                      🔗 View TX
                     </a>
                   )}
                 </div>

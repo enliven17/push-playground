@@ -1,8 +1,11 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Providers from './providers'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ['latin'] })
+
+// Dynamically import Providers to avoid SSR issues
+const Providers = dynamic(() => import('./providers'), { ssr: false })
 
 export const metadata = {
   title: 'Push Playground',
